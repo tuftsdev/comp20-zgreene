@@ -1,1 +1,11 @@
-/* Your CSS here... */
+
+#messages{
+	border-style: groove;
+	border-color: LightCyan;
+	font-family: "Impact";
+	background-color: DeepPink;
+}
+
+body {
+	background-color: Cyan;
+}
