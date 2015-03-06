@@ -1,11 +1,11 @@
-function.parse(){
+function parse(){
 	request = new XMLHttpRequest();
 	request.open("GET", "messages.json", true);
 	request.onreadystatechange = parseData;
 	request.send();
 }
 
-function.parseData(){
+function parseData(){
 	if (request.readyState == 4 && request.status == 200){
 		messagesDiv = document.getElementById("messages");
 		converted = JSON.parse(request.responseText);
