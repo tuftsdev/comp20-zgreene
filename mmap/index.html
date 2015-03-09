@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+			<title>The Maurader's Map</title>
+			<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+			<link rel="stylesheet" href="geolocation_map_style.css" />"
+			<!-- Google Maps API -->
+			<script src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
+			<!-- Datastore API -->
+			<script src="https://secret-about-box.herokuapp.com/sendLocation"></script>
+			<script>
+				var myLat = 0;
+				var myLng = 0;
+				var myLogin = "Harleylsdale";
+				var request = new XMLHttpRequest();
+				var myPosition = new google.maps.LatLng(myLat, myLng);
+				var myOptions = {
+					zoom: 13, //EDIT THIS PART? from example
+					center: myPosition,
+					mapTypeId: google.maps.MapTypeId.ROADMAP
+				};
+				var map;
+				var marker;
+				var infoWindow = new google.maps.InfoWindow();
+				//var places;
+				var neighbors = [];
+
+				function initialize(){
+					map = new google.maps.Map(document.getElementById("map_canvas"), myOptions;
+					getLocation();
+				}
+
+				//Retrieve your position
+				function getLocation(){
+					if (navigator.geolocation) {
+						navigator.geolocation.getCurrentPosition(function(position){
+						myLat = position.coords.latitude;
+						myLng = position.coords.longitude;
+						sendData();
+						drawMap();
+					});
+					}
+					else {
+						alert("Geolocation is not supported by this web browser.");
+					}
+				}
+
+				//Send location and login via Datastore API
+				function sendData(){
+					request.open("POST", "datastore", true); //HOW DO I SEND IT TO THE DATASTORE?
+					request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+					request.onload = getData(); //Are these two lines in the right order?
+					request.send('"login=' + myLogin + "&lat=" + myLat + "&lng=" + myLng + '"');
+				}
+
+				function getData(){
+					//retrieve JSON data 
+					//DO I HAVE TO RE-INIT REQUEST OR USE A NEW VARIABLE?
+					request.open("GET", DATASTORE FILE, true);
+					request.onreadystatechange = parseData;
+					request.send();
+				}
+
+				function parseData(){
+					if (request.readyState == 4 && request.status == 200){
+						converted = JSON.getData(request.responseText);
+						for (i = 0; i < converted.length; i++){
+							otherLogin = converted[i]['login'];
+							otherLat = converted[i]['lat'];
+							otherLng = converted[i]['lng'];
+							measureDistance(otherLogin, otherLat, otherLng);
+						}
+					}
+					else if (request.readyState == 4 && request.status != 200){
+						alert("Page not loaded.");
+					}
+				}
+
+				//takes in login, coordinates of other point, compare to myLat and myLng
+				//Store login, distance in list -- declare list as var up top
+				//for each data point, calculate distance between it and your location
+				function measureDistance(otherLogin, otherLat, otherLng){ //IS THIS THE RIGHT WAY TO PASS VARIABLES?
+					Number.prototype.toRad = function() {
+						return this * Math.PI / 180;
+					}
+
+					lat2 = otherLat;
+					lng2 = otherLng;
+					lat1 = myLat;
+					lng1 = myLng;
+
+					R = 3959; //Earth's radius in miles
+					x1 = lat2-lat1
+					dLat = x1.toRad();
+					x2 = lng2-lng1;
+					dLng = x2.toRad();
+					a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(lat1.toRad()) * math.cos(lat2.toRad()) * Math.sin(dLng/2) * Math.sin(dLng/2);
+					c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+					d = R * c;
+					neighbors.push({login: otherLogin, distance: d}); //CAN VARIABLES IN THIS OBJECT NOT BE STRINGS?
+				}
+
+				function drawMap() {
+					myPosition = new google.maps.LatLng(myLat, myLng);
+					map.panTo(myPosition);
+					marker = new google.maps.Marker({
+						position: myPosition,
+						title: "My Location"
+						//How to put an image for this marker?
+						//info window popup saying login
+					});
+					marker.setMap(map);
+
+					// Go thru list of other markers and draw them on the map with infowindows for each
+					//See additional parts of example code in geolocation_map.html
+				}
+
+				
+			</script>
+	</head>
+
+	<body onload="initialize()"> 
+		<div id="map_canvas"></div>
+	</body>
+</html>
