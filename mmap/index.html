@@ -35,7 +35,6 @@
 						navigator.geolocation.getCurrentPosition(function(position){
 						myLat = position.coords.latitude;
 						myLng = position.coords.longitude;
-						console.log("my position is " + myLat + " and " + myLng);
 						sendData();
 						drawMap();
 					});
@@ -63,7 +62,6 @@
 							otherLng = converted[i]['lng'];
 							measureDistance(otherLogin, otherLat, otherLng);
 						}
-						console.log(neighbors);
 					}
 					else if (request.readyState == 4 && request.status != 200){
 						alert("Page not loaded.");
@@ -91,11 +89,10 @@
 					a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(lat1.toRad()) * Math.cos(lat2.toRad()) * Math.sin(dLng/2) * Math.sin(dLng/2);
 					c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 					d = R * c;
-					neighbors.push({login: otherLogin, distance: d}); 
+					neighbors.push({login: otherLogin, distance: d, lat: otherLat, lng: otherLng}); 
 				}
 
 				function drawMap() {
-					console.log("hello world");
 					myPosition = new google.maps.LatLng(myLat, myLng);
 					map.panTo(myPosition);
 					marker = new google.maps.Marker({
@@ -111,6 +108,12 @@
 						infowindow.open(map, marker);
 					});
 
+					for (i = 0; i < neighbors.length; i++){
+						theirPosition = new google.maps.LatLng(neighbors[i]['lat'], neighbors[i]['lng']);
+						marker = new google.maps.Marker({
+							position: theirPosition,
+							title: "<h1>" + neighbors[i]['login'] + "</h1><p>" + neighbors[i]['distance'] + "</p>"
+						});
 					// Go thru list of other markers and draw them on the map with infowindows for each
 					//See additional parts of example code in geolocation_map.html
 				}
