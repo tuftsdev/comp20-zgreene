@@ -52,19 +52,12 @@
 					request.open("POST", "https://secret-about-box.herokuapp.com/sendLocation", true); 
 					request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 					request.onreadystatechange = parseData;
-					request.send('"login=' + myLogin + '&lat=' + myLat + '&lng=' + myLng + '"');
+					request.send('login=' + myLogin + '&lat=' + myLat + '&lng=' + myLng);
 				}
 
-/*
-				function getData(){
-					//retrieve JSON data 
-					//DO I HAVE TO RE-INIT REQUEST OR USE A NEW VARIABLE?
-					request.open("GET", DATASTORE FILE, true);
-					request.onreadystatechange = parseData;
-					request.send();
-				}
-*/
-				function parseData(){
+
+
+			function parseData(){
 					if (request.readyState == 4 && request.status == 200){
 						console.log(request.responseText);
 						converted = JSON.getData(request.responseText);
