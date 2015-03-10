@@ -21,7 +21,7 @@
 				var map;
 				var marker;
 				var infowindow = new google.maps.InfoWindow();
-				//var places;
+				var image = 'star_marker.png';
 				var neighbors = [];
 
 				function init(){
@@ -99,9 +99,10 @@
 					map.panTo(myPosition);
 					marker = new google.maps.Marker({
 						position: myPosition,
-						title: "My Location"
+						title: "myLogin" 
+						icon: image
+
 						//How to put an image for this marker?
-						//info window popup saying login
 					});
 					marker.setMap(map);
 
