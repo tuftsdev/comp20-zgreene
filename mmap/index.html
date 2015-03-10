@@ -26,7 +26,7 @@
 				//var places;
 				var neighbors = [];
 
-				function initialize(){
+				function init(){
 					map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 					getLocation();
 				}
@@ -120,7 +120,7 @@
 			</script>
 	</head>
 
-	<body onload="initialize()"> 
+	<body onload="init()"> 
 		<div id="map_canvas"></div>
 	</body>
 </html>
