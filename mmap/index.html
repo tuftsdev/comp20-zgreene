@@ -31,6 +31,13 @@
 					getLocation();
 				}
 
+	//Send location and login via Datastore API
+				function sendData(){
+					request.open("POST", "datastore", true); //HOW DO I SEND IT TO THE DATASTORE?
+					request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+					//request.onload = getData(); //Are these two lines in the right order?
+					request.send('"login=' + myLogin + "&lat=" + myLat + "&lng=" + myLng + '"');
+				}
 				//Retrieve your position
 				function getLocation(){
 					if (navigator.geolocation) {
@@ -47,13 +54,7 @@
 					}
 				}
 
-				//Send location and login via Datastore API
-				function sendData(){
-					request.open("POST", "datastore", true); //HOW DO I SEND IT TO THE DATASTORE?
-					request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-					//request.onload = getData(); //Are these two lines in the right order?
-					request.send('"login=' + myLogin + "&lat=" + myLat + "&lng=" + myLng + '"');
-				}
+			
 /*
 				function getData(){
 					//retrieve JSON data 
