@@ -37,15 +37,16 @@
 						navigator.geolocation.getCurrentPosition(function(position){
 						myLat = position.coords.latitude;
 						myLng = position.coords.longitude;
-						sendData();
-						drawMap();
+						console.log("my position is " + myLat + " and " + myLng);
+						//sendData();
+						//drawMap();
 					});
 					}
 					else {
 						alert("Geolocation is not supported by this web browser.");
 					}
 				}
-
+/*
 				//Send location and login via Datastore API
 				function sendData(){
 					request.open("POST", "datastore", true); //HOW DO I SEND IT TO THE DATASTORE?
@@ -115,7 +116,7 @@
 					// Go thru list of other markers and draw them on the map with infowindows for each
 					//See additional parts of example code in geolocation_map.html
 				}
-
+*/
 				
 			</script>
 	</head>
