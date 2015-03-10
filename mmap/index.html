@@ -89,7 +89,7 @@
 					dLat = x1.toRad();
 					x2 = lng2-lng1;
 					dLng = x2.toRad();
-					a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(lat1.toRad()) * math.cos(lat2.toRad()) * Math.sin(dLng/2) * Math.sin(dLng/2);
+					a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(lat1.toRad()) * Math.cos(lat2.toRad()) * Math.sin(dLng/2) * Math.sin(dLng/2);
 					c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 					d = R * c;
 					neighbors.push({login: otherLogin, distance: d}); //CAN VARIABLES IN THIS OBJECT NOT BE STRINGS?
