@@ -74,7 +74,7 @@
 				//takes in login, coordinates of other point, compare to myLat and myLng
 				//Store login, distance in list -- declare list as var up top
 				//for each data point, calculate distance between it and your location
-				function measureDistance(otherLogin, otherLat, otherLng){ //IS THIS THE RIGHT WAY TO PASS VARIABLES?
+				function measureDistance(otherLogin, otherLat, otherLng){ 
 					Number.prototype.toRad = function() {
 						return this * Math.PI / 180;
 					}
@@ -93,6 +93,7 @@
 					c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 					d = R * c;
 					neighbors.push({login: otherLogin, distance: d}); //CAN VARIABLES IN THIS OBJECT NOT BE STRINGS?
+					console.log(neighbors);
 				}
 
 				function drawMap() {
