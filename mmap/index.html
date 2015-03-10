@@ -59,8 +59,8 @@
 
 			function parseData(){
 					if (request.readyState == 4 && request.status == 200){
-						console.log(request.responseText);
-						converted = JSON.getData(request.responseText);
+						converted = JSON.parse(request.responseText);
+						console.log(converted);
 						for (i = 0; i < converted.length; i++){
 							otherLogin = converted[i]['login'];
 							otherLat = converted[i]['lat'];
