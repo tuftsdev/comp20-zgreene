@@ -38,7 +38,7 @@
 						myLat = position.coords.latitude;
 						myLng = position.coords.longitude;
 						console.log("my position is " + myLat + " and " + myLng);
-						//sendData();
+						sendData();
 						//drawMap();
 					});
 					}
@@ -46,15 +46,15 @@
 						alert("Geolocation is not supported by this web browser.");
 					}
 				}
-/*
+
 				//Send location and login via Datastore API
 				function sendData(){
 					request.open("POST", "datastore", true); //HOW DO I SEND IT TO THE DATASTORE?
 					request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-					request.onload = getData(); //Are these two lines in the right order?
+					//request.onload = getData(); //Are these two lines in the right order?
 					request.send('"login=' + myLogin + "&lat=" + myLat + "&lng=" + myLng + '"');
 				}
-
+/*
 				function getData(){
 					//retrieve JSON data 
 					//DO I HAVE TO RE-INIT REQUEST OR USE A NEW VARIABLE?
