@@ -16,7 +16,7 @@
 				var request = new XMLHttpRequest();
 				var myPosition = new google.maps.LatLng(myLat, myLng);
 				var myOptions = {
-					zoom: 13, //EDIT THIS PART? from example
+					zoom: 13, 
 					center: myPosition,
 					mapTypeId: google.maps.MapTypeId.ROADMAP
 				};
@@ -55,9 +55,7 @@
 					request.send('login=' + myLogin + '&lat=' + myLat + '&lng=' + myLng);
 				}
 
-
-
-			function parseData(){
+				function parseData(){
 					if (request.readyState == 4 && request.status == 200){
 						converted = JSON.parse(request.responseText);
 						console.log(converted);
@@ -72,7 +70,7 @@
 						alert("Page not loaded.");
 					}
 				}
-/*
+
 				//takes in login, coordinates of other point, compare to myLat and myLng
 				//Store login, distance in list -- declare list as var up top
 				//for each data point, calculate distance between it and your location
@@ -96,7 +94,7 @@
 					d = R * c;
 					neighbors.push({login: otherLogin, distance: d}); //CAN VARIABLES IN THIS OBJECT NOT BE STRINGS?
 				}
-*/
+
 				function drawMap() {
 					myPosition = new google.maps.LatLng(myLat, myLng);
 					map.panTo(myPosition);
