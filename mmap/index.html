@@ -65,6 +65,7 @@
 							otherLng = converted[i]['lng'];
 							measureDistance(otherLogin, otherLat, otherLng);
 						}
+						console.log(neighbors);
 					}
 					else if (request.readyState == 4 && request.status != 200){
 						alert("Page not loaded.");
@@ -93,7 +94,7 @@
 					c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 					d = R * c;
 					neighbors.push({login: otherLogin, distance: d}); //CAN VARIABLES IN THIS OBJECT NOT BE STRINGS?
-					console.log(neighbors);
+
 				}
 
 				function drawMap() {
