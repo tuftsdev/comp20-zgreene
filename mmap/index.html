@@ -110,13 +110,11 @@
 
 					for (i = 0; i < neighbors.length; i++){
 						theirPosition = new google.maps.LatLng(neighbors[i]['lat'], neighbors[i]['lng']);
-						otherMarker = new google.maps.Marker({
+						marker = new google.maps.Marker({
 							position: theirPosition,
 							title: "<h1>" + neighbors[i]['login'] + "</h1><p>" + neighbors[i]['distance'] + "</p>"
 						});
 					}
-					// Go thru list of other markers and draw them on the map with infowindows for each
-					//See additional parts of example code in geolocation_map.html
 				}
 
 				
