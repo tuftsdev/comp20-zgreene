@@ -5,9 +5,7 @@
 			<title>The Maurader's Map</title>
 			<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 			<link rel="stylesheet" href="geolocation_map_style.css" />"
-			<!-- Google Maps API -->
 			<script src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
-			<!-- Datastore API -->
 			
 			<script>
 				var myLat = 0;
@@ -55,10 +53,10 @@
 					request.send('login=' + myLogin + '&lat=' + myLat + '&lng=' + myLng);
 				}
 
+				//Retrieve locations of classmates
 				function parseData(){
 					if (request.readyState == 4 && request.status == 200){
 						converted = JSON.parse(request.responseText);
-						console.log(converted);
 						for (i = 0; i < converted.length; i++){
 							otherLogin = converted[i]['login'];
 							otherLat = converted[i]['lat'];
@@ -93,8 +91,7 @@
 					a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(lat1.toRad()) * Math.cos(lat2.toRad()) * Math.sin(dLng/2) * Math.sin(dLng/2);
 					c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 					d = R * c;
-					neighbors.push({login: otherLogin, distance: d}); //CAN VARIABLES IN THIS OBJECT NOT BE STRINGS?
-
+					neighbors.push({login: otherLogin, distance: d}); 
 				}
 
 				function drawMap() {
@@ -107,6 +104,12 @@
 						//info window popup saying login
 					});
 					marker.setMap(map);
+
+					//Open info window on click of marker
+					google.maps.event.addListener(marker, 'click', function(){
+						infowindow.setContent(marker.title);
+						infowindow.open(map, marker);
+					});
 
 					// Go thru list of other markers and draw them on the map with infowindows for each
 					//See additional parts of example code in geolocation_map.html
