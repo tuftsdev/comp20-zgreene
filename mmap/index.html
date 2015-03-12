@@ -67,6 +67,7 @@
 							otherLng = converted[i]['lng'];
 							measureDistance(otherLogin, otherLat, otherLng);
 						}
+						drawMap();
 					}
 					else if (request.readyState == 4 && request.status != 200){
 						alert("Page not loaded.");
@@ -97,7 +98,7 @@
 					d = R * c;
 					neighbors.push({login: otherLogin, distance: d, lat: otherLat, lng: otherLng}); 
 					//console.log("Neighbors pushed are " + neighbors);
-					drawMap();
+
 				}
 
 				function drawMap() {
