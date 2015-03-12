@@ -108,14 +108,14 @@
 						infowindow.open(map, marker);
 					});
 
-					console.log("Neighbors are " + neighbors);
+					
 					for (i = 0; i < neighbors.length; i++){ //WHY DOESN'T THIS BIT WORK
 						theirPosition = new google.maps.LatLng(neighbors[i]['lat'], neighbors[i]['lng']);
 						var otherMarker = new google.maps.Marker({
 							position: theirPosition,
 							title: "<h1>" + neighbors[i]['login'] + "</h1><p>" + neighbors[i]['distance'] + "</p>"
 						});
-
+						console.log("Neighbors are " + neighbors)[i];
 						google.maps.event.addListener(otherMarker, 'click', function(){
 							infowindow.setContent(otherMarker.title);
 							infowindow.open(map, otherMarker);
