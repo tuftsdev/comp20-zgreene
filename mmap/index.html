@@ -23,7 +23,6 @@
 				var infowindow = new google.maps.InfoWindow();
 				var image = 'star_marker.png';
 				var neighbors = [];
-				//var converted;
 
 				function init(){
 					map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
@@ -36,10 +35,7 @@
 						navigator.geolocation.getCurrentPosition(function(position){
 						myLat = position.coords.latitude;
 						myLng = position.coords.longitude;
-						console.log("calling send data");
 						sendData();
-						//console.log("calling draw map");
-						//drawMap();
 					});
 					}
 					else {
@@ -49,7 +45,6 @@
 
 				//Send location and login via Datastore API
 				function sendData(){
-					console.log("in send data");
 					request.open("POST", "https://secret-about-box.herokuapp.com/sendLocation", true); 
 					request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 					request.onreadystatechange = parseData;
@@ -74,11 +69,8 @@
 					}
 				}
 
-				//takes in login, coordinates of other point, compare to myLat and myLng
-				//Store login, distance in list -- declare list as var up top
-				//for each data point, calculate distance between it and your location
+				//For each data point, calculate distance between it and your location
 				function measureDistance(otherLogin, otherLat, otherLng){ 
-					console.log("in measureDistance");
 					Number.prototype.toRad = function() {
 						return this * Math.PI / 180;
 					}
@@ -97,12 +89,9 @@
 					c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 					d = R * c;
 					neighbors.push({login: otherLogin, distance: d, lat: otherLat, lng: otherLng}); 
-					//console.log("Neighbors pushed are " + neighbors);
-
 				}
 
 				function drawMap() {
-					console.log("in draw map");
 					myPosition = new google.maps.LatLng(myLat, myLng);
 					map.panTo(myPosition);
 					marker = new google.maps.Marker({
@@ -118,30 +107,26 @@
 						infowindow.open(map, marker);
 					});
 
-					console.log("before for loops");
-					for (i = 0; i < neighbors.length; i++){ //WHY DOESN'T THIS BIT WORK
-						createMarker(neighbors[i]);
-						console.log("in for loop");
-						
+					for (i = 0; i < neighbors.length; i++){ 
+						createMarker(neighbors[i]);						
 					}
 				}
 
+				//Create markers for neighbors
 				function createMarker(place){
 					var theirPosition = new google.maps.LatLng(neighbors[i]['lat'], neighbors[i]['lng']);
-						console.log("Their position is " + theirPosition);
-						var otherMarker = new google.maps.Marker({
-							map: map,
-							position: theirPosition,
-							title: "<h1>" + neighbors[i]['login'] + "</h1><p>" + neighbors[i]['distance'] + "</p>"
-						});
-						console.log("Neighbors are " + neighbors[i]['login'] + " " + neighbors[i]['distance']);
-						google.maps.event.addListener(otherMarker, 'click', function(){
-							infowindow.close();
-							infowindow.setContent(otherMarker.title);
-							infowindow.open(map, otherMarker);
-						});
+					var otherMarker = new google.maps.Marker({
+						map: map,
+						position: theirPosition,
+						title: "<h4>" + neighbors[i]['login'] + "</h4><p>" + neighbors[i]['distance'] + "miles </p>"
+					});
+						
+					google.maps.event.addListener(otherMarker, 'click', function(){
+					infowindow.close();
+					infowindow.setContent(otherMarker.title);
+					infowindow.open(map, otherMarker);
+					});
 				}
-
 				
 			</script>
 	</head>
