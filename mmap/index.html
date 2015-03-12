@@ -53,7 +53,6 @@
 
 				//Retrieve locations of classmates
 				function parseData(){
-					console.log("in parse data");
 					if (request.readyState == 4 && request.status == 200){
 						converted = JSON.parse(request.responseText);
 						for (i = 0; i < converted.length; i++){
@@ -112,13 +111,12 @@
 					}
 				}
 
-				//Create markers for neighbors
 				function createMarker(place){
 					var theirPosition = new google.maps.LatLng(neighbors[i]['lat'], neighbors[i]['lng']);
 					var otherMarker = new google.maps.Marker({
 						map: map,
 						position: theirPosition,
-						title: "<h4>" + neighbors[i]['login'] + "</h4><p>" + neighbors[i]['distance'] + "miles </p>"
+						title: "<h4>" + neighbors[i]['login'] + "</h4><p>" + neighbors[i]['distance'] + " miles away</p>"
 					});
 						
 					google.maps.event.addListener(otherMarker, 'click', function(){
