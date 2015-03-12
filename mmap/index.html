@@ -23,6 +23,7 @@
 				var infowindow = new google.maps.InfoWindow();
 				var image = 'star_marker.png';
 				var neighbors = [];
+				//var converted;
 
 				function init(){
 					map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
@@ -37,8 +38,8 @@
 						myLng = position.coords.longitude;
 						console.log("calling send data");
 						sendData();
-						console.log("calling draw map");
-						drawMap();
+						//console.log("calling draw map");
+						//drawMap();
 					});
 					}
 					else {
@@ -95,7 +96,8 @@
 					c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 					d = R * c;
 					neighbors.push({login: otherLogin, distance: d, lat: otherLat, lng: otherLng}); 
-					console.log("Neighbors pushed are " + neighbors);
+					//console.log("Neighbors pushed are " + neighbors);
+					drawMap();
 				}
 
 				function drawMap() {
