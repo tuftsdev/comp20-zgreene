@@ -120,19 +120,26 @@
 
 					console.log("before for loops");
 					for (i = 0; i < neighbors.length; i++){ //WHY DOESN'T THIS BIT WORK
+						createMarker(neighbors[i]);
 						console.log("in for loop");
-						theirPosition = new google.maps.LatLng(neighbors[i]['lat'], neighbors[i]['lng']);
+						
+					}
+				}
+
+				function createMarker(place){
+					var theirPosition = new google.maps.LatLng(neighbors[i]['lat'], neighbors[i]['lng']);
 						console.log("Their position is " + theirPosition);
 						var otherMarker = new google.maps.Marker({
+							map: map,
 							position: theirPosition,
 							title: "<h1>" + neighbors[i]['login'] + "</h1><p>" + neighbors[i]['distance'] + "</p>"
 						});
 						console.log("Neighbors are " + neighbors[i]['login'] + " " + neighbors[i]['distance']);
 						google.maps.event.addListener(otherMarker, 'click', function(){
+							infowindow.close();
 							infowindow.setContent(otherMarker.title);
 							infowindow.open(map, otherMarker);
 						});
-					}
 				}
 
 				
