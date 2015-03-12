@@ -35,7 +35,9 @@
 						navigator.geolocation.getCurrentPosition(function(position){
 						myLat = position.coords.latitude;
 						myLng = position.coords.longitude;
+						console.log("calling send data");
 						sendData();
+						console.log("calling draw map");
 						drawMap();
 					});
 					}
@@ -46,6 +48,7 @@
 
 				//Send location and login via Datastore API
 				function sendData(){
+					console.log("in send data");
 					request.open("POST", "https://secret-about-box.herokuapp.com/sendLocation", true); 
 					request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 					request.onreadystatechange = parseData;
@@ -54,6 +57,7 @@
 
 				//Retrieve locations of classmates
 				function parseData(){
+					console.log("in parse data");
 					if (request.readyState == 4 && request.status == 200){
 						converted = JSON.parse(request.responseText);
 						for (i = 0; i < converted.length; i++){
@@ -72,6 +76,7 @@
 				//Store login, distance in list -- declare list as var up top
 				//for each data point, calculate distance between it and your location
 				function measureDistance(otherLogin, otherLat, otherLng){ 
+					console.log("in measureDistance");
 					Number.prototype.toRad = function() {
 						return this * Math.PI / 180;
 					}
@@ -94,6 +99,7 @@
 				}
 
 				function drawMap() {
+					console.log("in draw map");
 					myPosition = new google.maps.LatLng(myLat, myLng);
 					map.panTo(myPosition);
 					marker = new google.maps.Marker({
