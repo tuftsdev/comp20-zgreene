@@ -90,6 +90,7 @@
 					c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 					d = R * c;
 					neighbors.push({login: otherLogin, distance: d, lat: otherLat, lng: otherLng}); 
+					console.log("Neighbors pushed are " + neighbors);
 				}
 
 				function drawMap() {
