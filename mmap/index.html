@@ -116,7 +116,7 @@
 							title: "<h1>" + neighbors[i]['login'] + "</h1><p>" + neighbors[i]['distance'] + "</p>"
 						});
 
-						google.maps.event.addListener(otherMarker 'click', function(){
+						google.maps.event.addListener(otherMarker, 'click', function(){
 							infowindow.setContent(otherMarker.title);
 							infowindow.open(map, otherMarker);
 						});
