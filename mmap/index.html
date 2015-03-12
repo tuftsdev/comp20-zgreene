@@ -108,7 +108,7 @@
 						infowindow.open(map, marker);
 					});
 
-					
+					console.log("before for loops");
 					for (i = 0; i < neighbors.length; i++){ //WHY DOESN'T THIS BIT WORK
 						console.log("in for loop");
 						theirPosition = new google.maps.LatLng(neighbors[i]['lat'], neighbors[i]['lng']);
