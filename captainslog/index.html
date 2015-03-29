@@ -7,12 +7,23 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script>
 	 	$(document).ready(function(){
+	 		reload();
 	 		$("#msg").keypress(function(e) {
 	 			if (e.which == 13) {
 	 				var d = new Date();
-	 				$("#log").prepend("<p>" + d.toString() + " - " + $("#msg").val() + "</p>");
+	 				now = d.toString();
+	 				$("#log").prepend("<p>" + now + " - " + $("#msg").val() + "</p>");
+	 				localStorage.setItem(now, $("#msg").val());
 	 			}
 	 		});
+
+	 		function reload(){
+	 			output = "";
+	 			for (key in localStorage) {
+	 				output = "<p>" + key + " - " +localStorage[key] + "</p>" + output;
+	 			}
+	 			$("#log").html(output);
+	 		}
 	 	});
 	</script>
 </head>
