@@ -1,0 +1,15 @@
+body {
+	margin: 5% 5% 10% 5%;
+	font-family: Arial;
+	text-align: justify;
+}
+
+#title {
+	text-align: center;
+	font-size: 48;
+}
+
+#byline {
+	text-align: center;
+	font-size: 20;
+}
