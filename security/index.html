@@ -39,16 +39,16 @@
 		<h4>Injection: Accessibility of other client's information</h4>
 			<ol>
 				<li>Issue: Any user can access the stored location and time of all the other users in the database by querying logins that are not equal to their own.</li>
-				<li>Location: GET function, /location.json</li>
+				<li>Location: Affects HTTP GET, /location.json</li>
 				<li>Severity of Issue: This issue is of high severity because it allows private 
 				information on one's whereabouts to be publicly accessible to users that could be 
 				pesky or even dangerous. </li>
-				<li>Description of Issue: I found it by typing the following into the URL in the 
+				<li>Description of Issue: I identified this issue by typing the following into the URL in the 
 				browser. Doing so creates an associative array that changes the query to return data
 				where the username is not the one entered.</li>
 				<p><img src="issue1URL.png" alt="URL displaying issue"/></p>
-				<li>Proof of vulnerability: Another stored user and their information became 
-				available to me. It only returned one user's information because his code specifies
+				<li>Proof of vulnerability: Another stored user's information became 
+				available to me. It only returned one user's information because my client's code specifies
 				 to find only one in the GET function.</li>
 				<p><img src="issue1proof.png" alt="page evidence"/></p>
 				<li>Resolution: in the GET function, run a url.search to ensure that "login=" has
@@ -113,7 +113,7 @@
 
 	<h2>Conclusion</h2>
 
-	<p>The issues with The Maurauder's Map in this report mainly deal with the vulnerability of the site to malicious client-side input. All of these issues affect the accuracy and purpose of the site and put the privacy and security of other users at stake. The scheme of the website might also be restructured as it allows users to enter any random latitude and longitude as their location. Changes to protect against other attacks should be fairly simple to account for now that they have been identified. My implementation charge is next semester's tuition. </p>
+	<p>The issues with The Maurauder's Map in this report mainly deal with the vulnerability of the site to malicious client-side input. All of these issues affect the accuracy and purpose of the site and put the privacy and security of other users at stake. The scheme of the website might also be restructured as it allows users to enter any random latitude and longitude as their location. Changes to protect against other attacks should be fairly simple for me to account for now that they have been identified, but obviously needs an expert's work. Thus, my implementation charge is next semester's tuition. </p>
 
 	</body>
 </html>
