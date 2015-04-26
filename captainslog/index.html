@@ -6,7 +6,25 @@
 	<title>Captain's Log</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script>
-	  // Most of your work will be done here...
+	 	$(document).ready(function(){
+	 		reload();
+	 		$("#msg").keypress(function(e) {
+	 			if (e.which == 13) {
+	 				var d = new Date();
+	 				now = d.toString();
+	 				$("#log").prepend("<p>" + now + " - " + $("#msg").val() + "</p>");
+	 				localStorage.setItem(now, $("#msg").val());
+	 			}
+	 		});
+
+	 		function reload(){
+	 			output = "";
+	 			for (key in localStorage) {
+	 				output = "<p>" + key + " - " +localStorage[key] + "</p>" + output;
+	 			}
+	 			$("#log").html(output);
+	 		}
+	 	});
 	</script>
 </head>
 
