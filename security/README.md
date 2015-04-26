@@ -2,6 +2,7 @@
 ### Zoe Greene
 April 25, 2015
 
-  - All aspects of the work correctly implemented (to the best of my knowledge).
-  - I completed the assignment alone.
-  - I spent approximately 12 hours on the assignment.
+  - A file detailing a security assessment of my partner, Alex Ravan's Assignments 2 and 3. 
+  - All aspects of the work completed.
+  - I completed the assignment alone (with the exception of exchanging project information with Alex).
+  - I spent approximately 7 hours on the assignment.
